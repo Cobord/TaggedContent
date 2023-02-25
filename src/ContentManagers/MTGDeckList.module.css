@@ -1,0 +1,29 @@
+.decklist {
+    padding : 10px;
+    border : 2px solid red;
+    min-height: 100vh;
+    max-height: 100vh;
+}
+
+.sideboard {
+    padding : 10px;
+    border : 2px solid red;
+    min-height: 30vh;
+    max-height: 30vh;
+}
+
+.format {
+    padding : 5px;
+    border : 2px solid blue;
+    min-height: 5vh;
+    max-height: 5vh;
+    text-align: center;
+    border: solid;
+}
+
+.extraNotes {
+    padding : 10px;
+    border : 2px solid red;
+    min-height: 60vh;
+    max-height: 60vh;
+}
