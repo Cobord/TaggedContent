@@ -117,11 +117,17 @@ function App() {
 	return (
 		<Container className="my-2">
 			<Routes>
-				<Route path="/" element={<NoteList allNotes={allFullNotes} availableTags={allTags} onEditTag={onEditTag} onDeleteTag={onDeleteTag} onRestoreDefaultTags={()=>setDefaultTagsLoaded(false)}/>}/>
-				<Route path="/new" element={<NewNote onSubmit={onCreateNote} onAddTag={onNewTag} availableTags={allTags} />}/>
+				<Route path="/" element={<NoteList allNotes={allFullNotes}
+					availableTags={allTags} onEditTag={onEditTag}
+					onDeleteTag={onDeleteTag}
+					onRestoreDefaultTags={()=>setDefaultTagsLoaded(false)}/>}/>
+				<Route path="/new" element={<NewNote onSubmit={onCreateNote}
+					onAddTag={onNewTag} availableTags={allTags} />}/>
 				<Route path="/:id">
-					<Route index element = {<ShowNote curNote={getNote} onDelete={onDeleteNote}/>} />
-					<Route path="edit" element = {<EditNote onEdit={onEditNote} onAddTag={onNewTag} availableTags={allTags} startingNote={getNote} />} />
+					<Route index element = {<ShowNote curNote={getNote}
+						onDelete={onDeleteNote}/>} />
+					<Route path="edit" element = {<EditNote onEdit={onEditNote}
+						onAddTag={onNewTag} availableTags={allTags} startingNote={getNote} />} />
 				</Route>
 				<Route path="/*" element={<Navigate to="/"/>}/>
 			</Routes>
