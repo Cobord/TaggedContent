@@ -82,13 +82,15 @@ function PrettyCardModal({show ,handleClose} : PrettyCardModalProps) {
 	useEffect(() => {
 		async function getImgSrc() {
 			if (!show) {
-				setImgSrc(oldImageSrc => undefined)
+				// eslint-disable-next-line @typescript-eslint/no-unused-vars
+				setImgSrc(_oldImageSrc => undefined)
 				return
 			}
 			const x = imageSrcs.find((value : [CardName,ImageSrc | undefined]) => value[0]===show)?.[1]
 			if (x) {
 				console.log("Knew it already")
-				setImgSrc(oldImageSrc => x)
+				// eslint-disable-next-line @typescript-eslint/no-unused-vars
+				setImgSrc(_oldImageSrc => x)
 				return
 			}
 			const scryFallUrl = `https://api.scryfall.com/cards/named?exact=${show}`
@@ -102,18 +104,21 @@ function PrettyCardModal({show ,handleClose} : PrettyCardModalProps) {
 				})
 				if (!response.ok) {
 					setImgSrcs(oldImageSrcs => [...oldImageSrcs,[show,undefined]])
-					setImgSrc(oldImageSrc => undefined)
+					// eslint-disable-next-line @typescript-eslint/no-unused-vars
+					setImgSrc(_oldImageSrc => undefined)
 				} else {
 					const result = (await response.json())
 					const result2 = result as {image_uris : {small : string}}
 					const result3 = result2.image_uris.small
 					setImgSrcs(oldImageSrcs => [...oldImageSrcs,[show,result3]])
-					setImgSrc(oldImageSrc => result3)
+					// eslint-disable-next-line @typescript-eslint/no-unused-vars
+					setImgSrc(_oldImageSrc => result3)
 				}
 			}
 			catch (error) {
 				setImgSrcs(oldImageSrcs => [...oldImageSrcs,[show,undefined]])
-				setImgSrc(oldImageSrc => undefined)
+				// eslint-disable-next-line @typescript-eslint/no-unused-vars
+				setImgSrc(_oldImageSrc => undefined)
 			}
 		}
 		getImgSrc()
