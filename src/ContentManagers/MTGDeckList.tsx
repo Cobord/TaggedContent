@@ -33,7 +33,12 @@ export function PrettyContent({content} : {content : ContentType}) {
 		<div className={styles.decklist}>
 			<h3>DeckList</h3>
 			<ul>
-				{content.decklist.map(cardName => <li key={cardName[0]} onClick={()=>setShowModal(cardName[0])}>{`${cardName[1]}  ${cardName[0]}`}</li>)}
+				{content.decklist.map(cardName =>
+					<li key={cardName[0]}
+						onClick={()=>setShowModal(cardName[0])}>
+						{`${cardName[1]}  ${cardName[0]}`}
+					</li>
+				)}
 			</ul>
 		</div>
 	)
@@ -43,8 +48,14 @@ export function PrettyContent({content} : {content : ContentType}) {
 			<h3>Sideboard</h3>
 			{content.sideboard.length>0 ?
 				(<ul>
-					{content.sideboard.map(cardName => <li key={cardName[0]} onClick={()=>setShowModal(cardName[0])}>{`${cardName[1]}  ${cardName[0]}`}</li>)}
-				</ul>) : <></>}
+					{content.sideboard.map(cardName =>
+						<li key={cardName[0]}
+							onClick={()=>setShowModal(cardName[0])}>
+							{`${cardName[1]}  ${cardName[0]}`}
+						</li>
+					)}
+				</ul>) : <></>
+			}
 		</div>
 	)
 
@@ -187,8 +198,8 @@ type ContentFormProps = {
 }
 
 export function ContentForm({contentRefs,controlId,startingContent} : ContentFormProps) {
-	const startingDecklistText = startingContent ? startingContent.decklist.map(s => `${s[1]} ${s[0]}`) : defaultContent.decklist
-	const startingSideboardText = startingContent ? startingContent.sideboard.map(s => `${s[1]} ${s[0]}`) : defaultContent.sideboard
+	const startingDecklistText = startingContent ? startingContent.decklist.map(s => `${s[1]} ${s[0]}`) : defaultContent.decklist.map(s => `${s[1]} ${s[0]}`)
+	const startingSideboardText = startingContent ? startingContent.sideboard.map(s => `${s[1]} ${s[0]}`) : defaultContent.sideboard.map(s => `${s[1]} ${s[0]}`)
 	const startingExtraNotesText = startingContent ? startingContent.extraNotes : defaultContent.extraNotes
 	const startingFormat = startingContent ? startingContent.format : defaultContent.format
 	return (<Form.Group controlId={controlId}>
