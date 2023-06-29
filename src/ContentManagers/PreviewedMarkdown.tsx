@@ -13,6 +13,8 @@ const defaultContent = {
 export const CONTENT_NAME = "Markdown Note"
 export const CONTENT_NAME_PLURAL = "Markdown Notes"
 
+export const contentDefaultTags = []
+
 export function PrettyContent({content} : {content : ContentType}) {
 	return (<><ReactMarkdown>
 		{content.markdown}
