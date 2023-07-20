@@ -14,3 +14,5 @@ We can compare this with if we replace the export in Content.tsx to one where th
 other behavior. You only create new files in the ContentManagers subfolder and point the exports to that desired file to account for these differences.
 
 One of the contents in the ContentManagers subfolders was a tutorial exercise, and so this is a modification to make the common aspects reused with minimal changes for different types of content.
+
+Only concerned with front-end and TypeScript aspects, so any later use of this requires for example the storage mechanism to be changed.
