@@ -62,7 +62,9 @@ export function NoteForm({onSubmit, onAddTag, availableTags, startingNote} : Not
 					</Form.Group>
 				</Col>
 			</Row>
-			<ContentForm contentRefs={neededRefs} controlId="content" startingContent={startingNote ? startingNote.content : undefined} />
+			<ContentForm contentRefs={neededRefs}
+				controlId="content"
+				startingContent={startingNote ? startingNote.content : undefined} />
 			<Stack direction="horizontal" gap={2} className="justify-content-end">
 				<Button type="submit">Submit</Button>
 				<Link to="..">

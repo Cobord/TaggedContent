@@ -50,7 +50,8 @@ export function ContentForm({contentRefs,controlId,startingContent} : ContentFor
 			<Col>
 				<Form.Group min-width="50%" controlId={controlId}>
 					<Form.Label>Body</Form.Label>
-					<Form.Control ref={contentRefs[0]} onChange={(e) => setInputContent(e.target.value)} defaultValue={startingContentText} required as="textarea" rows={15}/>
+					<Form.Control ref={contentRefs[0]} onChange={(e) => setInputContent(e.target.value)}
+						defaultValue={startingContentText} required as="textarea" rows={15}/>
 				</Form.Group>
 			</Col>
 			<Col>

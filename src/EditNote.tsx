@@ -28,7 +28,8 @@ export function EditNote({onEdit, onAddTag, availableTags, startingNote} : EditN
 	return (
 		<>
 			<h1 className="mb-4">{editTitle}</h1>
-			<NoteForm onSubmit={onSubmit} onAddTag={onAddTag} availableTags={availableTags} startingNote={realStartingNote}/>
+			<NoteForm onSubmit={onSubmit} onAddTag={onAddTag} availableTags={availableTags}
+				startingNote={realStartingNote}/>
 		</>
 	)
 }

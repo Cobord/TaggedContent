@@ -24,7 +24,8 @@ const defaultContent = {
 export const CONTENT_NAME = "MTG DeckList"
 export const CONTENT_NAME_PLURAL = "MTG DeckLists"
 
-export const contentDefaultTags = ["Black","Blue","Red","Green","White","Colorless","Aggro","Midrange","Control","Discard","Mill","Combo","Tribal","Tokens","Sacrifice"]
+export const contentDefaultTags = ["Black","Blue","Red","Green","White","Colorless",
+	"Aggro","Midrange","Control","Discard","Mill","Combo","Tribal","Tokens","Sacrifice"]
 
 export function PrettyContent({content} : {content : ContentType}) {
 	const [showModal,setShowModal] = useState<CardName | undefined>(undefined)
@@ -198,8 +199,10 @@ type ContentFormProps = {
 }
 
 export function ContentForm({contentRefs,controlId,startingContent} : ContentFormProps) {
-	const startingDecklistText = startingContent ? startingContent.decklist.map(s => `${s[1]} ${s[0]}`) : defaultContent.decklist.map(s => `${s[1]} ${s[0]}`)
-	const startingSideboardText = startingContent ? startingContent.sideboard.map(s => `${s[1]} ${s[0]}`) : defaultContent.sideboard.map(s => `${s[1]} ${s[0]}`)
+	const startingDecklistText = startingContent ? startingContent.decklist.map(s => `${s[1]} ${s[0]}`) :
+		defaultContent.decklist.map(s => `${s[1]} ${s[0]}`)
+	const startingSideboardText = startingContent ? startingContent.sideboard.map(s => `${s[1]} ${s[0]}`) :
+		defaultContent.sideboard.map(s => `${s[1]} ${s[0]}`)
 	const startingExtraNotesText = startingContent ? startingContent.extraNotes : defaultContent.extraNotes
 	const startingFormat = startingContent ? startingContent.format : defaultContent.format
 	return (<Form.Group controlId={controlId}>
@@ -215,17 +218,20 @@ export function ContentForm({contentRefs,controlId,startingContent} : ContentFor
 				<Stack direction="horizontal" gap={4}>
 					<Col>
 						<Form.Label>DeckList</Form.Label>
-						<Form.Control ref={contentRefs[0]} defaultValue={startingDecklistText.join("\n")} required as="textarea" rows={25}/>
+						<Form.Control ref={contentRefs[0]} defaultValue={startingDecklistText.join("\n")}
+							required as="textarea" rows={25}/>
 					</Col>
 					<Col>
 						<Stack gap={2}>
 							<Row>
 								<Form.Label>Sideboard</Form.Label>
-								<Form.Control ref={contentRefs[1]} defaultValue={startingSideboardText.join("\n")} as="textarea" rows={6}/>
+								<Form.Control ref={contentRefs[1]} defaultValue={startingSideboardText.join("\n")}
+									as="textarea" rows={6}/>
 							</Row>
 							<Row>
 								<Form.Label>Extra Notes</Form.Label>
-								<Form.Control ref={contentRefs[2]} defaultValue={startingExtraNotesText} as="textarea" rows={14}/>
+								<Form.Control ref={contentRefs[2]} defaultValue={startingExtraNotesText}
+									as="textarea" rows={14}/>
 							</Row>
 						</Stack>
 					</Col>
@@ -236,5 +242,8 @@ export function ContentForm({contentRefs,controlId,startingContent} : ContentFor
 }
 
 export function useContentRefs() : RefsRequired {
-	return [useRef<HTMLTextAreaElement>(null),useRef<HTMLTextAreaElement>(null),useRef<HTMLTextAreaElement>(null),useRef<HTMLSelectElement>(null)]
+	return [useRef<HTMLTextAreaElement>(null),
+		useRef<HTMLTextAreaElement>(null),
+		useRef<HTMLTextAreaElement>(null),
+		useRef<HTMLSelectElement>(null)]
 }

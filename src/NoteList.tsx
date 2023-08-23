@@ -27,7 +27,8 @@ export function NoteList({allNotes, availableTags, onEditTag, onDeleteTag, onRes
 				return note.title.toLowerCase().includes(myTitle.toLowerCase())
 			})
 			.filter(note => {
-				return myTags.every(tag => note.tags.map(noteTag=>(noteTag.id)).includes(tag.id))
+				return myTags.every(
+					tag => note.tags.map(noteTag=>(noteTag.id)).includes(tag.id))
 			})
 	},[allNotes,myTitle,myTags]
 	)
@@ -153,7 +154,8 @@ function EditTagsModal({availableTags, unusedTags, show, handleClose,onEditTag,o
 					{availableTags.map(tag => (
 						<Row key={tag.id}>
 							<Col xs="auto">
-								<Form.Control type="text" value={tag.label} onChange={(e) => onEditTag(tag.id,e.target.value)} />
+								<Form.Control type="text" value={tag.label}
+									onChange={(e) => onEditTag(tag.id,e.target.value)} />
 							</Col>
 							<Col xs="auto">
 								<Button variant="outline-danger" onClick={() => onDeleteTag(tag.id)}>
