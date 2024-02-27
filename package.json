@@ -21,7 +21,7 @@
     "react-select": "^5.7.0",
     "save-dev": "^0.0.1-security",
     "uuid": "^9.0.0",
-    "zod": "^3.20.6"
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
