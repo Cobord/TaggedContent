@@ -19,7 +19,9 @@ import { CONTENT_NAME_PLURAL, ContentType, contentDefaultTags } from "./Content"
 export type NoteData = {
 	title : string,
 	content : ContentType,
-	tags : Tag[]
+	tags : Tag[],
+	dateCreated: Date,
+	dateUpdated: Date
 }
 
 export type Tag = {
@@ -48,7 +50,7 @@ function App() {
 			return {...rawNote,tags : allTags.filter(tag => (
 				rawNote.tagIds.includes(tag.id)
 			))}
-		})
+		}).sort((a, b) => a.dateUpdated>b.dateUpdated ? -1 : 1)
 	},[allRawNotes,allTags]
 	)
 
@@ -73,10 +75,15 @@ function App() {
 
 	function onEditNote(noteId : Note["id"] ,data : NoteData) {
 		const modifyAtId = (r : RawNote) => (r.id==noteId ?
-			{title : data.title, content : data.content, tagIds : data.tags.map(t => t.id), id : noteId}
+			{title : data.title,
+				content : data.content,
+				tagIds : data.tags.map(t => t.id),
+				id : noteId,
+				dateCreated: r.dateCreated,
+				dateUpdated: new Date()}
 			: r)
 		setAllRawNotes(
-			prevRawNotes => (prevRawNotes.map(modifyAtId))
+			prevRawNotes => (prevRawNotes.map(modifyAtId).sort((a, b) => a.dateUpdated>b.dateUpdated ? -1 : 1))
 		)
 	}
 

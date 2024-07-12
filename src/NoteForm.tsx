@@ -18,6 +18,7 @@ type NoteFormProps = {
 export function NoteForm({onSubmit, onAddTag, availableTags, startingNote} : NoteFormProps) {
 	const startingTitle = startingNote ? startingNote.title : ""
 	const startingTags = startingNote === undefined ? [] : startingNote.tags
+	const dateCreated = startingNote === undefined ? new Date() : startingNote.dateCreated
 	const titleRef = useRef<HTMLInputElement>(null)
 	const neededRefs = useContentRefs()
 	const [myTags,setMyTags] = useState<Tag[]>(startingTags)
@@ -29,7 +30,9 @@ export function NoteForm({onSubmit, onAddTag, availableTags, startingNote} : Not
 			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			title : titleRef.current!.value,
 			content : contentCreator(neededRefs),
-			tags : myTags
+			tags : myTags,
+			dateCreated: dateCreated,
+			dateUpdated: new Date()
 		})
 		navigate("..")
 	}

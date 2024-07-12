@@ -7,6 +7,7 @@ import styles from "./NoteList.module.css"
 import { Col, Row, Stack, Button, Form, Card, Badge, Modal } from "react-bootstrap"
 // eslint-disable-next-line import/no-unresolved
 import { CONTENT_NAME_PLURAL } from "./Content"
+import { formatDistance } from "date-fns"
 
 type NoteListProps = {
 	allNotes : Note[]
@@ -39,6 +40,7 @@ export function NoteList({allNotes, availableTags, onEditTag, onDeleteTag, onRes
 	},[allNotes,availableTags])
 
 	const noteListTitle = `All ${CONTENT_NAME_PLURAL}`
+	const displayNow = new Date()
 
 	return (
 		<>
@@ -80,7 +82,7 @@ export function NoteList({allNotes, availableTags, onEditTag, onDeleteTag, onRes
 			<Row xs={1} sm={2} lg={3} xl={4} className="g-3">
 				{filteredNotes.map( curNote => (
 					<Col key={curNote.id}>
-						<NoteCard title={curNote.title} id={curNote.id} tags={curNote.tags}/>
+						<NoteCard title={curNote.title} id={curNote.id} tags={curNote.tags} dateCreated={curNote.dateCreated} dateUpdated={curNote.dateUpdated} displayNow={displayNow}/>
 					</Col>
 				))}
 			</Row>
@@ -95,14 +97,23 @@ type NoteCardProps = {
 	title : Note["title"]
 	id : Note["id"]
 	tags : Note["tags"]
+	dateCreated: Date
+	dateUpdated: Date
+	displayNow: Date
 }
 
-function NoteCard({title,id,tags} : NoteCardProps) {
+function NoteCard({title,id,tags,dateCreated,dateUpdated,displayNow} : NoteCardProps) {
 	return <Card as={Link} to={`/${id}`} className={`h-100 text-reset text-decoration-none ${styles.card}`}>
 		<Card.Body>
 			<Stack gap={2} className="align-items-center justify-content-center h-100">
 				<span className="fs-5">
 					{title}
+				</span>
+				<span>
+					{`Created at ${dateCreated instanceof Date ? formatDistance(dateCreated,displayNow) : "N/A"}`}
+				</span>
+				<span>
+					{`Updated at ${dateUpdated instanceof Date ? formatDistance(dateUpdated,displayNow) : "N/A"}`}
 				</span>
 				{tags.length>0 && (
 					<Stack direction="horizontal" gap={1} className="justify-content-center flex-wrap">
